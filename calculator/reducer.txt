@@ -1,0 +1,34 @@
+function reducer(state, action) {
+    switch (action.type) {
+        case "NUMBER_1":
+            return { ...state, number1: action.payload }
+        case "NUMBER_2":
+            return { ...state, number2: action.payload }
+        case "RESULT!":
+            return { ...state, result: action.payload }
+        default:
+            throw new Error("Invalid action type!")
+    }
+}
+
+const initionalState =
+{
+    number1: 0,
+    number2: 0,
+    result: 0
+}
+
+ const [state, dispatch] = useReducer(reducer, initionalState)
+
+    const NumberOneChangeHandler = (e) => {
+        dispatch({ type: "NUMBER_1", payload: Number(e.target.value) })
+    }
+
+    const NumberTwoChangeHandler = (e) => {
+        dispatch({ type: "NUMBER_2", payload: Number(e.target.value) })
+    }
+
+    const AdditionalHandler =()=>
+    {
+        dispatch({type :"RESULT!", payload :Number(state.number1+ state.number2)})
+    }
